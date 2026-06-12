@@ -50,9 +50,14 @@ def _llamar_maps(origen: tuple, destino: tuple, api_key: str) -> list[dict]:
         "X-Goog-Api-Key": api_key,
         "X-Goog-FieldMask": "routes.legs.steps.polyline",
     }
-    r = requests.post(MAPS_ROUTES_URL, json=payload, headers=headers, timeout=10)
+    for intento in range(5):
+        r = requests.post(MAPS_ROUTES_URL, json=payload, headers=headers, timeout=10)
+        if r.status_code == 429:
+            time.sleep(5 * 2 ** intento)
+            continue
+        r.raise_for_status()
+        return _parsear_ruta(r.json())
     r.raise_for_status()
-    return _parsear_ruta(r.json())
 
 def generar_rutas(catalogo: dict, api_key: str) -> dict:
     sucursal_map = {s["id_sucursal"]: s for s in catalogo["sucursales"]}
@@ -72,19 +77,24 @@ def generar_rutas(catalogo: dict, api_key: str) -> dict:
                 {"lat": origen[0], "lng": origen[1]},
                 {"lat": destino[0], "lng": destino[1]},
             ]
-        time.sleep(0.05)
+        time.sleep(0.6)
     return rutas
 
 def cargar_o_generar_rutas(path: str, catalogo: dict | None, api_key: str | None) -> dict:
     try:
         with open(path, "r", encoding="utf-8") as f:
+            rutas = json.load(f)
             print(f"Rutas cargadas desde {path}")
-            return json.load(f)
     except FileNotFoundError:
-        pass
-    print(f"Generando rutas reales con Google Maps ({len(catalogo['vehiculos'])} vehículos)...")
-    rutas = generar_rutas(catalogo, api_key)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(rutas, f)
-    print(f"Rutas guardadas en {path}")
+        rutas = {}
+
+    # Incremental: solo genera rutas de vehículos que no tienen
+    faltantes = [v for v in catalogo["vehiculos"] if v["id_vehiculo"] not in rutas] if catalogo else []
+    if faltantes:
+        print(f"Generando rutas reales con Google Maps ({len(faltantes)} vehículos)...")
+        nuevas = generar_rutas({"sucursales": catalogo["sucursales"], "vehiculos": faltantes}, api_key)
+        rutas.update(nuevas)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(rutas, f)
+        print(f"Rutas guardadas en {path}")
     return rutas

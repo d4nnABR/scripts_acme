@@ -108,6 +108,45 @@ def generar_catalogo(usar_api: bool = True) -> dict:
 
     return {"sucursales": SUCURSALES, "vehiculos": vehiculos, "clientes": clientes, "cliente_vehiculo": asignaciones}
 
+def extender_catalogo(catalogo: dict, n_total: int, usar_api: bool = True) -> dict:
+    """Agrega vehículos hasta n_total sin tocar los existentes."""
+    actuales = len(catalogo["vehiculos"])
+    nuevos = n_total - actuales
+    if nuevos <= 0:
+        return catalogo
+
+    personas = None
+    if usar_api:
+        try:
+            personas = obtener_clientes_api(nuevos)
+            print(f"{nuevos} clientes nuevos generados con randomuser.me")
+        except Exception as e:
+            print(f"randomuser.me no disponible ({e}) — usando fallback local")
+    if personas is None:
+        personas = _clientes_fallback(nuevos)
+
+    for j, i in enumerate(range(actuales + 1, n_total + 1)):
+        suc_idx = (i - 1) % len(SUCURSALES)
+        id_v = f"EV-ACME-{i:05d}"
+        id_c = f"CLI-{i:05d}"
+        catalogo["vehiculos"].append({
+            "id_vehiculo": id_v,
+            "modelo": random.choice(MODELOS),
+            "anio": random.choice([2022, 2023, 2024]),
+            "id_sucursal": SUCURSALES[suc_idx]["id_sucursal"],
+        })
+        catalogo["clientes"].append({
+            "id_cliente": id_c,
+            "nombre_cliente": personas[j]["nombre"],
+            "correo": personas[j]["correo"],
+        })
+        catalogo["cliente_vehiculo"].append({
+            "id_cliente": id_c,
+            "id_vehiculo": id_v,
+            "fecha_asignacion": _fecha_aleatoria(),
+        })
+    return catalogo
+
 def cargar_catalogo(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
