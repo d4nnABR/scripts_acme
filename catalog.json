@@ -1,0 +1,1730 @@
+{
+  "sucursales": [
+    {
+      "id_sucursal": "SUC-001",
+      "nombre_sucursal": "ACME Guatemala",
+      "pais": "Guatemala",
+      "ciudad": "Ciudad de Guatemala",
+      "bbox": {
+        "lat_min": 14.55,
+        "lat_max": 14.75,
+        "lon_min": -90.65,
+        "lon_max": -90.45
+      }
+    },
+    {
+      "id_sucursal": "SUC-002",
+      "nombre_sucursal": "ACME México",
+      "pais": "México",
+      "ciudad": "Ciudad de México",
+      "bbox": {
+        "lat_min": 19.25,
+        "lat_max": 19.55,
+        "lon_min": -99.25,
+        "lon_max": -99.05
+      }
+    },
+    {
+      "id_sucursal": "SUC-003",
+      "nombre_sucursal": "ACME Colombia",
+      "pais": "Colombia",
+      "ciudad": "Bogotá",
+      "bbox": {
+        "lat_min": 4.55,
+        "lat_max": 4.75,
+        "lon_min": -74.15,
+        "lon_max": -74.0
+      }
+    },
+    {
+      "id_sucursal": "SUC-004",
+      "nombre_sucursal": "ACME Chile",
+      "pais": "Chile",
+      "ciudad": "Santiago",
+      "bbox": {
+        "lat_min": -33.55,
+        "lat_max": -33.35,
+        "lon_min": -70.75,
+        "lon_max": -70.55
+      }
+    },
+    {
+      "id_sucursal": "SUC-005",
+      "nombre_sucursal": "ACME Perú",
+      "pais": "Perú",
+      "ciudad": "Lima",
+      "bbox": {
+        "lat_min": -12.15,
+        "lat_max": -11.95,
+        "lon_min": -77.1,
+        "lon_max": -76.95
+      }
+    },
+    {
+      "id_sucursal": "SUC-006",
+      "nombre_sucursal": "ACME Argentina",
+      "pais": "Argentina",
+      "ciudad": "Buenos Aires",
+      "bbox": {
+        "lat_min": -34.7,
+        "lat_max": -34.52,
+        "lon_min": -58.55,
+        "lon_max": -58.33
+      }
+    },
+    {
+      "id_sucursal": "SUC-007",
+      "nombre_sucursal": "ACME Ecuador",
+      "pais": "Ecuador",
+      "ciudad": "Quito",
+      "bbox": {
+        "lat_min": -0.3,
+        "lat_max": -0.1,
+        "lon_min": -78.6,
+        "lon_max": -78.42
+      }
+    },
+    {
+      "id_sucursal": "SUC-008",
+      "nombre_sucursal": "ACME Costa Rica",
+      "pais": "Costa Rica",
+      "ciudad": "San José",
+      "bbox": {
+        "lat_min": 9.88,
+        "lat_max": 10.05,
+        "lon_min": -84.18,
+        "lon_max": -84.0
+      }
+    },
+    {
+      "id_sucursal": "SUC-009",
+      "nombre_sucursal": "ACME Panamá",
+      "pais": "Panamá",
+      "ciudad": "Ciudad de Panamá",
+      "bbox": {
+        "lat_min": 8.95,
+        "lat_max": 9.12,
+        "lon_min": -79.6,
+        "lon_max": -79.42
+      }
+    },
+    {
+      "id_sucursal": "SUC-010",
+      "nombre_sucursal": "ACME Honduras",
+      "pais": "Honduras",
+      "ciudad": "Tegucigalpa",
+      "bbox": {
+        "lat_min": 14.05,
+        "lat_max": 14.18,
+        "lon_min": -87.28,
+        "lon_max": -87.14
+      }
+    }
+  ],
+  "vehiculos": [
+    {
+      "id_vehiculo": "EV-ACME-00001",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00002",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00003",
+      "modelo": "ACME Trail P",
+      "anio": 2023,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00004",
+      "modelo": "ACME Volt X",
+      "anio": 2024,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00005",
+      "modelo": "ACME Trail P",
+      "anio": 2022,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00006",
+      "modelo": "ACME Volt S",
+      "anio": 2023,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00007",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00008",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00009",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00010",
+      "modelo": "ACME Aero R",
+      "anio": 2023,
+      "id_sucursal": "SUC-001"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00011",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00012",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00013",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00014",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00015",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00016",
+      "modelo": "ACME Aero R",
+      "anio": 2023,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00017",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00018",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00019",
+      "modelo": "ACME Volt S",
+      "anio": 2023,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00020",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-002"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00021",
+      "modelo": "ACME Volt S",
+      "anio": 2023,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00022",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00023",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00024",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00025",
+      "modelo": "ACME Trail P",
+      "anio": 2022,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00026",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00027",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00028",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00029",
+      "modelo": "ACME Urban E",
+      "anio": 2024,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00030",
+      "modelo": "ACME Aero R",
+      "anio": 2022,
+      "id_sucursal": "SUC-003"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00031",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00032",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00033",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00034",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00035",
+      "modelo": "ACME Trail P",
+      "anio": 2022,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00036",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00037",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00038",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00039",
+      "modelo": "ACME Cargo V",
+      "anio": 2023,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00040",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-004"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00041",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00042",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00043",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00044",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00045",
+      "modelo": "ACME Volt X",
+      "anio": 2024,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00046",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00047",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00048",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00049",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00050",
+      "modelo": "ACME Urban E",
+      "anio": 2024,
+      "id_sucursal": "SUC-005"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00051",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00052",
+      "modelo": "ACME Trail P",
+      "anio": 2023,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00053",
+      "modelo": "ACME Trail P",
+      "anio": 2023,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00054",
+      "modelo": "ACME Urban E",
+      "anio": 2024,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00055",
+      "modelo": "ACME Volt S",
+      "anio": 2023,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00056",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00057",
+      "modelo": "ACME Trail P",
+      "anio": 2023,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00058",
+      "modelo": "ACME Volt X",
+      "anio": 2024,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00059",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00060",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-006"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00061",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00062",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00063",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00064",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00065",
+      "modelo": "ACME Trail P",
+      "anio": 2022,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00066",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00067",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00068",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00069",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00070",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-007"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00071",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00072",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00073",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00074",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00075",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00076",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00077",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00078",
+      "modelo": "ACME Aero R",
+      "anio": 2024,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00079",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00080",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-008"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00081",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00082",
+      "modelo": "ACME Volt X",
+      "anio": 2023,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00083",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00084",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00085",
+      "modelo": "ACME Aero R",
+      "anio": 2023,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00086",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00087",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00088",
+      "modelo": "ACME Volt S",
+      "anio": 2022,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00089",
+      "modelo": "ACME Cargo V",
+      "anio": 2024,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00090",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-009"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00091",
+      "modelo": "ACME Cargo V",
+      "anio": 2022,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00092",
+      "modelo": "ACME Volt S",
+      "anio": 2024,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00093",
+      "modelo": "ACME Cargo V",
+      "anio": 2023,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00094",
+      "modelo": "ACME Trail P",
+      "anio": 2024,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00095",
+      "modelo": "ACME Urban E",
+      "anio": 2022,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00096",
+      "modelo": "ACME Volt X",
+      "anio": 2022,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00097",
+      "modelo": "ACME Aero R",
+      "anio": 2023,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00098",
+      "modelo": "ACME Urban E",
+      "anio": 2023,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00099",
+      "modelo": "ACME Aero R",
+      "anio": 2023,
+      "id_sucursal": "SUC-010"
+    },
+    {
+      "id_vehiculo": "EV-ACME-00100",
+      "modelo": "ACME Volt X",
+      "anio": 2024,
+      "id_sucursal": "SUC-010"
+    }
+  ],
+  "clientes": [
+    {
+      "id_cliente": "CLI-00001",
+      "nombre_cliente": "Aida Dueñas",
+      "correo": "aida.duenas@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00002",
+      "nombre_cliente": "Emiliano Ramírez",
+      "correo": "emiliano.ramirez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00003",
+      "nombre_cliente": "Ignacio Herrera",
+      "correo": "ignacio.herrera@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00004",
+      "nombre_cliente": "Domingo Guerrero",
+      "correo": "domingo.guerrero@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00005",
+      "nombre_cliente": "Nieves Domínguez",
+      "correo": "nieves.dominguez@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00006",
+      "nombre_cliente": "Barbara Urías",
+      "correo": "barbara.urias@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00007",
+      "nombre_cliente": "Alberto Velasco",
+      "correo": "alberto.velasco@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00008",
+      "nombre_cliente": "Julio Cano",
+      "correo": "julio.cano@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00009",
+      "nombre_cliente": "Marta Delgado",
+      "correo": "marta.delgado@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00010",
+      "nombre_cliente": "Ángel Cabán",
+      "correo": "angel.caban@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00011",
+      "nombre_cliente": "Camilo Sotelo",
+      "correo": "camilo.sotelo@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00012",
+      "nombre_cliente": "Reina Delgado",
+      "correo": "reina.delgado@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00013",
+      "nombre_cliente": "María José Alemán",
+      "correo": "mariajose.aleman@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00014",
+      "nombre_cliente": "Fátima Ferrer",
+      "correo": "fatima.ferrer@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00015",
+      "nombre_cliente": "Salvador Galindo",
+      "correo": "salvador.galindo@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00016",
+      "nombre_cliente": "Jaime Carrasco",
+      "correo": "jaime.carrasco@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00017",
+      "nombre_cliente": "Luis Román",
+      "correo": "luis.roman@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00018",
+      "nombre_cliente": "Luis Hernádez",
+      "correo": "luis.hernadez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00019",
+      "nombre_cliente": "Luis Manuel Solorzano",
+      "correo": "luismanuel.solorzano@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00020",
+      "nombre_cliente": "Mercedes Núñez",
+      "correo": "mercedes.nunez@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00021",
+      "nombre_cliente": "Manuel Gallegos",
+      "correo": "manuel.gallegos@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00022",
+      "nombre_cliente": "Alexander Alonso",
+      "correo": "alexander.alonso@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00023",
+      "nombre_cliente": "Santiago Galindo",
+      "correo": "santiago.galindo@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00024",
+      "nombre_cliente": "Asunción Diaz",
+      "correo": "asuncion.diaz@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00025",
+      "nombre_cliente": "José Manuél Tejada",
+      "correo": "josemanuel.tejada@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00026",
+      "nombre_cliente": "José Suarez",
+      "correo": "jose.suarez@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00027",
+      "nombre_cliente": "David Guerrero",
+      "correo": "david.guerrero@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00028",
+      "nombre_cliente": "Claudio Hidalgo",
+      "correo": "claudio.hidalgo@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00029",
+      "nombre_cliente": "María del Carmen Gamez",
+      "correo": "mariadelcarmen.gamez@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00030",
+      "nombre_cliente": "Andrés Guerrero",
+      "correo": "andres.guerrero@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00031",
+      "nombre_cliente": "Grimaldo Barreto",
+      "correo": "grimaldo.barreto@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00032",
+      "nombre_cliente": "María Moya",
+      "correo": "maria.moya@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00033",
+      "nombre_cliente": "María Cristina Ozuna",
+      "correo": "mariacristina.ozuna@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00034",
+      "nombre_cliente": "Rosario Lomeli",
+      "correo": "rosario.lomeli@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00035",
+      "nombre_cliente": "Agustín Cruz",
+      "correo": "agustin.cruz@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00036",
+      "nombre_cliente": "Benito Serrano",
+      "correo": "benito.serrano@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00037",
+      "nombre_cliente": "Andrés Castro",
+      "correo": "andres.castro@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00038",
+      "nombre_cliente": "Evelia Mayorga",
+      "correo": "evelia.mayorga@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00039",
+      "nombre_cliente": "Javier Peña",
+      "correo": "javier.pena@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00040",
+      "nombre_cliente": "René Rosado",
+      "correo": "rene.rosado@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00041",
+      "nombre_cliente": "Miguel González",
+      "correo": "miguel.gonzalez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00042",
+      "nombre_cliente": "María Urbina",
+      "correo": "maria.urbina@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00043",
+      "nombre_cliente": "Soledad Herrera",
+      "correo": "soledad.herrera@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00044",
+      "nombre_cliente": "Consuelo Calvo",
+      "correo": "consuelo.calvo@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00045",
+      "nombre_cliente": "Ignacio Vásquez",
+      "correo": "ignacio.vasquez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00046",
+      "nombre_cliente": "Felipe Garrido",
+      "correo": "felipe.garrido@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00047",
+      "nombre_cliente": "Eric Urías",
+      "correo": "eric.urias@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00048",
+      "nombre_cliente": "Iván Giménez",
+      "correo": "ivan.gimenez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00049",
+      "nombre_cliente": "Ismael Cabrera",
+      "correo": "ismael.cabrera@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00050",
+      "nombre_cliente": "Gregorio Jiménez",
+      "correo": "gregorio.jimenez@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00051",
+      "nombre_cliente": "Lucía Lomeli",
+      "correo": "lucia.lomeli@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00052",
+      "nombre_cliente": "Natividad Chavarría",
+      "correo": "natividad.chavarria@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00053",
+      "nombre_cliente": "Jacobo Zavala",
+      "correo": "jacobo.zavala@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00054",
+      "nombre_cliente": "Rosario Salinas",
+      "correo": "rosario.salinas@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00055",
+      "nombre_cliente": "Alicia Olivares",
+      "correo": "alicia.olivares@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00056",
+      "nombre_cliente": "Vicente Sánchez",
+      "correo": "vicente.sanchez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00057",
+      "nombre_cliente": "Aitor Álvarez",
+      "correo": "aitor.alvarez@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00058",
+      "nombre_cliente": "Cristóbal Cabrera",
+      "correo": "cristobal.cabrera@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00059",
+      "nombre_cliente": "Alberto Dueñas",
+      "correo": "alberto.duenas@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00060",
+      "nombre_cliente": "Raquel García",
+      "correo": "raquel.garcia@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00061",
+      "nombre_cliente": "Borja Sanz",
+      "correo": "borja.sanz@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00062",
+      "nombre_cliente": "Timoteo Torres",
+      "correo": "timoteo.torres@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00063",
+      "nombre_cliente": "Cristian Pastor",
+      "correo": "cristian.pastor@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00064",
+      "nombre_cliente": "Vicente Zarate",
+      "correo": "vicente.zarate@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00065",
+      "nombre_cliente": "Xavier Quintanilla",
+      "correo": "xavier.quintanilla@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00066",
+      "nombre_cliente": "Daniela Mora",
+      "correo": "daniela.mora@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00067",
+      "nombre_cliente": "Abelardo Luevano",
+      "correo": "abelardo.luevano@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00068",
+      "nombre_cliente": "Lourdes Gallardo",
+      "correo": "lourdes.gallardo@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00069",
+      "nombre_cliente": "Eduardo Rodríguez",
+      "correo": "eduardo.rodriguez@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00070",
+      "nombre_cliente": "Marco Carrera",
+      "correo": "marco.carrera@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00071",
+      "nombre_cliente": "Julia Molina",
+      "correo": "julia.molina@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00072",
+      "nombre_cliente": "Alberto Villa",
+      "correo": "alberto.villa@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00073",
+      "nombre_cliente": "Esparta Centeno",
+      "correo": "esparta.centeno@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00074",
+      "nombre_cliente": "Yuridia Olvera",
+      "correo": "yuridia.olvera@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00075",
+      "nombre_cliente": "Jordi Carmona",
+      "correo": "jordi.carmona@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00076",
+      "nombre_cliente": "Hernán Mateo",
+      "correo": "hernan.mateo@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00077",
+      "nombre_cliente": "Remedios Ortega",
+      "correo": "remedios.ortega@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00078",
+      "nombre_cliente": "María Portillo",
+      "correo": "maria.portillo@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00079",
+      "nombre_cliente": "Isabel Pineda",
+      "correo": "isabel.pineda@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00080",
+      "nombre_cliente": "Timoteo Villanueva",
+      "correo": "timoteo.villanueva@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00081",
+      "nombre_cliente": "Julia Cantú",
+      "correo": "julia.cantu@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00082",
+      "nombre_cliente": "Guillermo Campos",
+      "correo": "guillermo.campos@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00083",
+      "nombre_cliente": "Sofia Rojas",
+      "correo": "sofia.rojas@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00084",
+      "nombre_cliente": "Silvia Rivas",
+      "correo": "silvia.rivas@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00085",
+      "nombre_cliente": "Natividad Palomo",
+      "correo": "natividad.palomo@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00086",
+      "nombre_cliente": "Alicia Riojas",
+      "correo": "alicia.riojas@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00087",
+      "nombre_cliente": "Mohamed Benítez",
+      "correo": "mohamed.benitez@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00088",
+      "nombre_cliente": "Benito Rojas",
+      "correo": "benito.rojas@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00089",
+      "nombre_cliente": "Nicolas Blanco",
+      "correo": "nicolas.blanco@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00090",
+      "nombre_cliente": "José Ballesteros",
+      "correo": "jose.ballesteros@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00091",
+      "nombre_cliente": "Oscar Vega",
+      "correo": "oscar.vega@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00092",
+      "nombre_cliente": "Jordi Vidal",
+      "correo": "jordi.vidal@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00093",
+      "nombre_cliente": "Hugo Soler",
+      "correo": "hugo.soler@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00094",
+      "nombre_cliente": "Óliver Alvarez",
+      "correo": "oliver.alvarez@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00095",
+      "nombre_cliente": "Raúl Jimínez",
+      "correo": "raul.jiminez@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00096",
+      "nombre_cliente": "Isaac Cuellar",
+      "correo": "isaac.cuellar@yahoo.com"
+    },
+    {
+      "id_cliente": "CLI-00097",
+      "nombre_cliente": "María del Carmen Esparza",
+      "correo": "mariadelcarmen.esparza@outlook.com"
+    },
+    {
+      "id_cliente": "CLI-00098",
+      "nombre_cliente": "Wilfrido Fuentes",
+      "correo": "wilfrido.fuentes@hotmail.com"
+    },
+    {
+      "id_cliente": "CLI-00099",
+      "nombre_cliente": "Ángel Morales",
+      "correo": "angel.morales@gmail.com"
+    },
+    {
+      "id_cliente": "CLI-00100",
+      "nombre_cliente": "Marco Antonio Guajardo",
+      "correo": "marcoantonio.guajardo@yahoo.com"
+    }
+  ],
+  "cliente_vehiculo": [
+    {
+      "id_cliente": "CLI-00001",
+      "id_vehiculo": "EV-ACME-00001",
+      "fecha_asignacion": "2024-07-31"
+    },
+    {
+      "id_cliente": "CLI-00002",
+      "id_vehiculo": "EV-ACME-00002",
+      "fecha_asignacion": "2023-12-06"
+    },
+    {
+      "id_cliente": "CLI-00003",
+      "id_vehiculo": "EV-ACME-00003",
+      "fecha_asignacion": "2024-05-09"
+    },
+    {
+      "id_cliente": "CLI-00004",
+      "id_vehiculo": "EV-ACME-00004",
+      "fecha_asignacion": "2024-11-07"
+    },
+    {
+      "id_cliente": "CLI-00005",
+      "id_vehiculo": "EV-ACME-00005",
+      "fecha_asignacion": "2024-11-10"
+    },
+    {
+      "id_cliente": "CLI-00006",
+      "id_vehiculo": "EV-ACME-00006",
+      "fecha_asignacion": "2022-10-23"
+    },
+    {
+      "id_cliente": "CLI-00007",
+      "id_vehiculo": "EV-ACME-00007",
+      "fecha_asignacion": "2023-07-15"
+    },
+    {
+      "id_cliente": "CLI-00008",
+      "id_vehiculo": "EV-ACME-00008",
+      "fecha_asignacion": "2023-06-17"
+    },
+    {
+      "id_cliente": "CLI-00009",
+      "id_vehiculo": "EV-ACME-00009",
+      "fecha_asignacion": "2023-05-30"
+    },
+    {
+      "id_cliente": "CLI-00010",
+      "id_vehiculo": "EV-ACME-00010",
+      "fecha_asignacion": "2022-03-11"
+    },
+    {
+      "id_cliente": "CLI-00011",
+      "id_vehiculo": "EV-ACME-00011",
+      "fecha_asignacion": "2023-10-15"
+    },
+    {
+      "id_cliente": "CLI-00012",
+      "id_vehiculo": "EV-ACME-00012",
+      "fecha_asignacion": "2022-08-26"
+    },
+    {
+      "id_cliente": "CLI-00013",
+      "id_vehiculo": "EV-ACME-00013",
+      "fecha_asignacion": "2023-07-08"
+    },
+    {
+      "id_cliente": "CLI-00014",
+      "id_vehiculo": "EV-ACME-00014",
+      "fecha_asignacion": "2023-08-02"
+    },
+    {
+      "id_cliente": "CLI-00015",
+      "id_vehiculo": "EV-ACME-00015",
+      "fecha_asignacion": "2024-12-13"
+    },
+    {
+      "id_cliente": "CLI-00016",
+      "id_vehiculo": "EV-ACME-00016",
+      "fecha_asignacion": "2024-05-11"
+    },
+    {
+      "id_cliente": "CLI-00017",
+      "id_vehiculo": "EV-ACME-00017",
+      "fecha_asignacion": "2022-09-06"
+    },
+    {
+      "id_cliente": "CLI-00018",
+      "id_vehiculo": "EV-ACME-00018",
+      "fecha_asignacion": "2023-03-21"
+    },
+    {
+      "id_cliente": "CLI-00019",
+      "id_vehiculo": "EV-ACME-00019",
+      "fecha_asignacion": "2024-12-06"
+    },
+    {
+      "id_cliente": "CLI-00020",
+      "id_vehiculo": "EV-ACME-00020",
+      "fecha_asignacion": "2024-11-26"
+    },
+    {
+      "id_cliente": "CLI-00021",
+      "id_vehiculo": "EV-ACME-00021",
+      "fecha_asignacion": "2022-05-15"
+    },
+    {
+      "id_cliente": "CLI-00022",
+      "id_vehiculo": "EV-ACME-00022",
+      "fecha_asignacion": "2024-02-19"
+    },
+    {
+      "id_cliente": "CLI-00023",
+      "id_vehiculo": "EV-ACME-00023",
+      "fecha_asignacion": "2022-06-19"
+    },
+    {
+      "id_cliente": "CLI-00024",
+      "id_vehiculo": "EV-ACME-00024",
+      "fecha_asignacion": "2023-11-03"
+    },
+    {
+      "id_cliente": "CLI-00025",
+      "id_vehiculo": "EV-ACME-00025",
+      "fecha_asignacion": "2023-01-24"
+    },
+    {
+      "id_cliente": "CLI-00026",
+      "id_vehiculo": "EV-ACME-00026",
+      "fecha_asignacion": "2022-12-01"
+    },
+    {
+      "id_cliente": "CLI-00027",
+      "id_vehiculo": "EV-ACME-00027",
+      "fecha_asignacion": "2024-05-31"
+    },
+    {
+      "id_cliente": "CLI-00028",
+      "id_vehiculo": "EV-ACME-00028",
+      "fecha_asignacion": "2022-09-28"
+    },
+    {
+      "id_cliente": "CLI-00029",
+      "id_vehiculo": "EV-ACME-00029",
+      "fecha_asignacion": "2023-04-20"
+    },
+    {
+      "id_cliente": "CLI-00030",
+      "id_vehiculo": "EV-ACME-00030",
+      "fecha_asignacion": "2022-12-10"
+    },
+    {
+      "id_cliente": "CLI-00031",
+      "id_vehiculo": "EV-ACME-00031",
+      "fecha_asignacion": "2024-03-31"
+    },
+    {
+      "id_cliente": "CLI-00032",
+      "id_vehiculo": "EV-ACME-00032",
+      "fecha_asignacion": "2022-09-02"
+    },
+    {
+      "id_cliente": "CLI-00033",
+      "id_vehiculo": "EV-ACME-00033",
+      "fecha_asignacion": "2022-02-12"
+    },
+    {
+      "id_cliente": "CLI-00034",
+      "id_vehiculo": "EV-ACME-00034",
+      "fecha_asignacion": "2024-02-01"
+    },
+    {
+      "id_cliente": "CLI-00035",
+      "id_vehiculo": "EV-ACME-00035",
+      "fecha_asignacion": "2023-06-30"
+    },
+    {
+      "id_cliente": "CLI-00036",
+      "id_vehiculo": "EV-ACME-00036",
+      "fecha_asignacion": "2023-01-08"
+    },
+    {
+      "id_cliente": "CLI-00037",
+      "id_vehiculo": "EV-ACME-00037",
+      "fecha_asignacion": "2023-01-21"
+    },
+    {
+      "id_cliente": "CLI-00038",
+      "id_vehiculo": "EV-ACME-00038",
+      "fecha_asignacion": "2023-01-08"
+    },
+    {
+      "id_cliente": "CLI-00039",
+      "id_vehiculo": "EV-ACME-00039",
+      "fecha_asignacion": "2023-07-19"
+    },
+    {
+      "id_cliente": "CLI-00040",
+      "id_vehiculo": "EV-ACME-00040",
+      "fecha_asignacion": "2023-08-15"
+    },
+    {
+      "id_cliente": "CLI-00041",
+      "id_vehiculo": "EV-ACME-00041",
+      "fecha_asignacion": "2024-02-14"
+    },
+    {
+      "id_cliente": "CLI-00042",
+      "id_vehiculo": "EV-ACME-00042",
+      "fecha_asignacion": "2024-07-07"
+    },
+    {
+      "id_cliente": "CLI-00043",
+      "id_vehiculo": "EV-ACME-00043",
+      "fecha_asignacion": "2022-01-20"
+    },
+    {
+      "id_cliente": "CLI-00044",
+      "id_vehiculo": "EV-ACME-00044",
+      "fecha_asignacion": "2023-05-03"
+    },
+    {
+      "id_cliente": "CLI-00045",
+      "id_vehiculo": "EV-ACME-00045",
+      "fecha_asignacion": "2024-10-01"
+    },
+    {
+      "id_cliente": "CLI-00046",
+      "id_vehiculo": "EV-ACME-00046",
+      "fecha_asignacion": "2024-11-02"
+    },
+    {
+      "id_cliente": "CLI-00047",
+      "id_vehiculo": "EV-ACME-00047",
+      "fecha_asignacion": "2024-12-04"
+    },
+    {
+      "id_cliente": "CLI-00048",
+      "id_vehiculo": "EV-ACME-00048",
+      "fecha_asignacion": "2023-11-14"
+    },
+    {
+      "id_cliente": "CLI-00049",
+      "id_vehiculo": "EV-ACME-00049",
+      "fecha_asignacion": "2022-01-02"
+    },
+    {
+      "id_cliente": "CLI-00050",
+      "id_vehiculo": "EV-ACME-00050",
+      "fecha_asignacion": "2022-02-26"
+    },
+    {
+      "id_cliente": "CLI-00051",
+      "id_vehiculo": "EV-ACME-00051",
+      "fecha_asignacion": "2023-08-10"
+    },
+    {
+      "id_cliente": "CLI-00052",
+      "id_vehiculo": "EV-ACME-00052",
+      "fecha_asignacion": "2023-07-24"
+    },
+    {
+      "id_cliente": "CLI-00053",
+      "id_vehiculo": "EV-ACME-00053",
+      "fecha_asignacion": "2024-04-06"
+    },
+    {
+      "id_cliente": "CLI-00054",
+      "id_vehiculo": "EV-ACME-00054",
+      "fecha_asignacion": "2023-04-09"
+    },
+    {
+      "id_cliente": "CLI-00055",
+      "id_vehiculo": "EV-ACME-00055",
+      "fecha_asignacion": "2024-08-03"
+    },
+    {
+      "id_cliente": "CLI-00056",
+      "id_vehiculo": "EV-ACME-00056",
+      "fecha_asignacion": "2023-01-26"
+    },
+    {
+      "id_cliente": "CLI-00057",
+      "id_vehiculo": "EV-ACME-00057",
+      "fecha_asignacion": "2023-05-31"
+    },
+    {
+      "id_cliente": "CLI-00058",
+      "id_vehiculo": "EV-ACME-00058",
+      "fecha_asignacion": "2022-02-18"
+    },
+    {
+      "id_cliente": "CLI-00059",
+      "id_vehiculo": "EV-ACME-00059",
+      "fecha_asignacion": "2023-05-28"
+    },
+    {
+      "id_cliente": "CLI-00060",
+      "id_vehiculo": "EV-ACME-00060",
+      "fecha_asignacion": "2022-11-02"
+    },
+    {
+      "id_cliente": "CLI-00061",
+      "id_vehiculo": "EV-ACME-00061",
+      "fecha_asignacion": "2023-12-02"
+    },
+    {
+      "id_cliente": "CLI-00062",
+      "id_vehiculo": "EV-ACME-00062",
+      "fecha_asignacion": "2023-12-21"
+    },
+    {
+      "id_cliente": "CLI-00063",
+      "id_vehiculo": "EV-ACME-00063",
+      "fecha_asignacion": "2023-06-18"
+    },
+    {
+      "id_cliente": "CLI-00064",
+      "id_vehiculo": "EV-ACME-00064",
+      "fecha_asignacion": "2022-05-24"
+    },
+    {
+      "id_cliente": "CLI-00065",
+      "id_vehiculo": "EV-ACME-00065",
+      "fecha_asignacion": "2024-03-04"
+    },
+    {
+      "id_cliente": "CLI-00066",
+      "id_vehiculo": "EV-ACME-00066",
+      "fecha_asignacion": "2022-09-07"
+    },
+    {
+      "id_cliente": "CLI-00067",
+      "id_vehiculo": "EV-ACME-00067",
+      "fecha_asignacion": "2022-06-02"
+    },
+    {
+      "id_cliente": "CLI-00068",
+      "id_vehiculo": "EV-ACME-00068",
+      "fecha_asignacion": "2023-12-30"
+    },
+    {
+      "id_cliente": "CLI-00069",
+      "id_vehiculo": "EV-ACME-00069",
+      "fecha_asignacion": "2024-06-17"
+    },
+    {
+      "id_cliente": "CLI-00070",
+      "id_vehiculo": "EV-ACME-00070",
+      "fecha_asignacion": "2023-03-26"
+    },
+    {
+      "id_cliente": "CLI-00071",
+      "id_vehiculo": "EV-ACME-00071",
+      "fecha_asignacion": "2022-09-15"
+    },
+    {
+      "id_cliente": "CLI-00072",
+      "id_vehiculo": "EV-ACME-00072",
+      "fecha_asignacion": "2022-12-21"
+    },
+    {
+      "id_cliente": "CLI-00073",
+      "id_vehiculo": "EV-ACME-00073",
+      "fecha_asignacion": "2024-10-14"
+    },
+    {
+      "id_cliente": "CLI-00074",
+      "id_vehiculo": "EV-ACME-00074",
+      "fecha_asignacion": "2024-02-22"
+    },
+    {
+      "id_cliente": "CLI-00075",
+      "id_vehiculo": "EV-ACME-00075",
+      "fecha_asignacion": "2024-12-08"
+    },
+    {
+      "id_cliente": "CLI-00076",
+      "id_vehiculo": "EV-ACME-00076",
+      "fecha_asignacion": "2023-08-07"
+    },
+    {
+      "id_cliente": "CLI-00077",
+      "id_vehiculo": "EV-ACME-00077",
+      "fecha_asignacion": "2023-11-01"
+    },
+    {
+      "id_cliente": "CLI-00078",
+      "id_vehiculo": "EV-ACME-00078",
+      "fecha_asignacion": "2024-09-04"
+    },
+    {
+      "id_cliente": "CLI-00079",
+      "id_vehiculo": "EV-ACME-00079",
+      "fecha_asignacion": "2022-07-14"
+    },
+    {
+      "id_cliente": "CLI-00080",
+      "id_vehiculo": "EV-ACME-00080",
+      "fecha_asignacion": "2024-06-02"
+    },
+    {
+      "id_cliente": "CLI-00081",
+      "id_vehiculo": "EV-ACME-00081",
+      "fecha_asignacion": "2022-11-12"
+    },
+    {
+      "id_cliente": "CLI-00082",
+      "id_vehiculo": "EV-ACME-00082",
+      "fecha_asignacion": "2023-04-20"
+    },
+    {
+      "id_cliente": "CLI-00083",
+      "id_vehiculo": "EV-ACME-00083",
+      "fecha_asignacion": "2024-02-07"
+    },
+    {
+      "id_cliente": "CLI-00084",
+      "id_vehiculo": "EV-ACME-00084",
+      "fecha_asignacion": "2023-12-12"
+    },
+    {
+      "id_cliente": "CLI-00085",
+      "id_vehiculo": "EV-ACME-00085",
+      "fecha_asignacion": "2023-04-22"
+    },
+    {
+      "id_cliente": "CLI-00086",
+      "id_vehiculo": "EV-ACME-00086",
+      "fecha_asignacion": "2023-06-26"
+    },
+    {
+      "id_cliente": "CLI-00087",
+      "id_vehiculo": "EV-ACME-00087",
+      "fecha_asignacion": "2024-08-11"
+    },
+    {
+      "id_cliente": "CLI-00088",
+      "id_vehiculo": "EV-ACME-00088",
+      "fecha_asignacion": "2024-08-24"
+    },
+    {
+      "id_cliente": "CLI-00089",
+      "id_vehiculo": "EV-ACME-00089",
+      "fecha_asignacion": "2024-09-02"
+    },
+    {
+      "id_cliente": "CLI-00090",
+      "id_vehiculo": "EV-ACME-00090",
+      "fecha_asignacion": "2022-04-15"
+    },
+    {
+      "id_cliente": "CLI-00091",
+      "id_vehiculo": "EV-ACME-00091",
+      "fecha_asignacion": "2022-02-05"
+    },
+    {
+      "id_cliente": "CLI-00092",
+      "id_vehiculo": "EV-ACME-00092",
+      "fecha_asignacion": "2023-08-12"
+    },
+    {
+      "id_cliente": "CLI-00093",
+      "id_vehiculo": "EV-ACME-00093",
+      "fecha_asignacion": "2024-06-02"
+    },
+    {
+      "id_cliente": "CLI-00094",
+      "id_vehiculo": "EV-ACME-00094",
+      "fecha_asignacion": "2022-07-13"
+    },
+    {
+      "id_cliente": "CLI-00095",
+      "id_vehiculo": "EV-ACME-00095",
+      "fecha_asignacion": "2024-05-12"
+    },
+    {
+      "id_cliente": "CLI-00096",
+      "id_vehiculo": "EV-ACME-00096",
+      "fecha_asignacion": "2022-04-12"
+    },
+    {
+      "id_cliente": "CLI-00097",
+      "id_vehiculo": "EV-ACME-00097",
+      "fecha_asignacion": "2024-05-12"
+    },
+    {
+      "id_cliente": "CLI-00098",
+      "id_vehiculo": "EV-ACME-00098",
+      "fecha_asignacion": "2022-01-21"
+    },
+    {
+      "id_cliente": "CLI-00099",
+      "id_vehiculo": "EV-ACME-00099",
+      "fecha_asignacion": "2023-07-17"
+    },
+    {
+      "id_cliente": "CLI-00100",
+      "id_vehiculo": "EV-ACME-00100",
+      "fecha_asignacion": "2023-03-21"
+    }
+  ]
+}
