@@ -147,6 +147,47 @@ def extender_catalogo(catalogo: dict, n_total: int, usar_api: bool = True) -> di
         })
     return catalogo
 
+def generar_catalogo_n(n: int, usar_api: bool = True) -> dict:
+    """Genera un catálogo fresco de exactamente n vehículos."""
+    personas = None
+    if usar_api:
+        try:
+            personas = obtener_clientes_api(min(n, 5000))
+            print(f"  {len(personas)} clientes obtenidos de randomuser.me")
+        except Exception as e:
+            print(f"  randomuser.me no disponible ({e}) — usando fallback local")
+    if personas is None:
+        personas = _clientes_fallback(n)
+
+    # si n > personas disponibles, completar con fallback extra
+    while len(personas) < n:
+        extra = _clientes_fallback(n - len(personas))
+        personas += extra
+
+    vehiculos, clientes, asignaciones = [], [], []
+    for i in range(1, n + 1):
+        suc_idx = (i - 1) % len(SUCURSALES)
+        id_v = f"EV-ACME-{i:05d}"
+        id_c = f"CLI-{i:05d}"
+        vehiculos.append({
+            "id_vehiculo": id_v,
+            "modelo":      random.choice(MODELOS),
+            "anio":        random.choice([2022, 2023, 2024]),
+            "id_sucursal": SUCURSALES[suc_idx]["id_sucursal"],
+        })
+        clientes.append({
+            "id_cliente":     id_c,
+            "nombre_cliente": personas[i - 1]["nombre"],
+            "correo":         personas[i - 1]["correo"],
+        })
+        asignaciones.append({
+            "id_cliente":       id_c,
+            "id_vehiculo":      id_v,
+            "fecha_asignacion": _fecha_aleatoria(),
+        })
+    return {"sucursales": SUCURSALES, "vehiculos": vehiculos,
+            "clientes": clientes, "cliente_vehiculo": asignaciones}
+
 def cargar_catalogo(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)

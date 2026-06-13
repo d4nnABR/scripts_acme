@@ -3,7 +3,7 @@ import sys
 import json
 import time
 from dotenv import load_dotenv
-from generator.catalog import generar_catalogo, cargar_catalogo
+from generator.catalog import generar_catalogo, generar_catalogo_n, cargar_catalogo
 from generator.routes import cargar_o_generar_rutas
 from generator.vehicle import Vehicle
 from generator.kafka_client import (
@@ -14,10 +14,98 @@ from generator.kafka_client import (
 
 load_dotenv()
 
-CATALOG_PATH = "catalog.json"
-ROUTES_PATH  = "routes.json"
-OFFLINE_UMBRAL_M = 800  # metros entre waypoints para trigger offline
+OFFLINE_UMBRAL_M = 800
 N_OPERADORES = 3
+
+OPCIONES_FLOTA = {
+    "1": 300,
+    "2": 1_000,
+    "3": 6_000,
+    "4": 10_000,
+}
+
+
+# Catálogo maestro: si existe, todas las opciones del menú toman los primeros N
+# de aquí (un solo archivo sirve para 300/1000/6000/10000). Si no existe, cae al
+# catalog.json base de 300 incluido en el repo.
+CATALOGO_MAESTRO = "catalog_10000.json"
+ROUTES_MAESTRO   = "routes_10000.json"  # rutas reales (pool de Google) para todo el maestro
+
+def _recortar(catalogo: dict, n: int) -> dict:
+    """Devuelve un catálogo con solo los primeros n vehículos y sus clientes/asignaciones."""
+    veh = catalogo["vehiculos"][:n]
+    ids = {v["id_vehiculo"] for v in veh}
+    return {
+        "sucursales":       catalogo["sucursales"],
+        "vehiculos":        veh,
+        "clientes":         catalogo["clientes"][:n],
+        "cliente_vehiculo": [a for a in catalogo["cliente_vehiculo"] if a["id_vehiculo"] in ids],
+    }
+
+
+def _menu_flota() -> int:
+    print("\n══════════════════════════════════════════════")
+    print("  ACME EV — Generador de telemetría")
+    print("══════════════════════════════════════════════")
+    print("  ¿Cuántos vehículos quieres simular?\n")
+    print("  [1]    300  vehículos  (demo — incluido en el repo)")
+    print("  [2]  1,000  vehículos")
+    print("  [3]  6,000  vehículos")
+    print("  [4] 10,000  vehículos")
+    print()
+    while True:
+        eleccion = input("  Opción [1-4]: ").strip()
+        if eleccion in OPCIONES_FLOTA:
+            return OPCIONES_FLOTA[eleccion]
+        print("  Ingresa 1, 2, 3 o 4.")
+
+
+def _menu_operador() -> int:
+    print()
+    print("  ¿Qué parte de la flota corres tú?\n")
+    print("  [1]  Operador 1  (primer tercio)")
+    print("  [2]  Operador 2  (segundo tercio)")
+    print("  [3]  Operador 3  (tercer tercio)")
+    print("  [0]  Toda la flota  (solo demo / pruebas locales)")
+    print()
+    while True:
+        eleccion = input("  Operador [0-3]: ").strip()
+        if eleccion in ("0", "1", "2", "3"):
+            return int(eleccion)
+        print("  Ingresa 0, 1, 2 o 3.")
+
+
+def _cargar_o_crear_catalogo(n: int, api_key: str | None) -> tuple[dict, dict]:
+    # ── catálogo ──────────────────────────────────────────────────────────────
+    if os.path.exists(CATALOGO_MAESTRO):
+        completo = cargar_catalogo(CATALOGO_MAESTRO)
+        disponibles = len(completo["vehiculos"])
+        if n > disponibles:
+            print(f"  Aviso: el maestro tiene {disponibles:,} vehículos; se usarán todos.")
+            n = disponibles
+        catalogo = _recortar(completo, n)
+        print(f"Catálogo: primeros {n:,} de {CATALOGO_MAESTRO} ({disponibles:,} disponibles)")
+        # routes_10000.json (rutas reales del pool) cubre los IDs de cualquier N,
+        # porque el recorte toma los primeros N vehículos del mismo maestro.
+        routes_path = ROUTES_MAESTRO if os.path.exists(ROUTES_MAESTRO) else f"routes_{n}.json"
+    elif n == 300:
+        # Respaldo: el repo trae catalog.json + routes.json con 300 reales
+        catalogo = cargar_catalogo("catalog.json")
+        print(f"Catálogo cargado desde catalog.json  ({len(catalogo['vehiculos']):,} vehículos)")
+        routes_path = "routes.json"
+    else:
+        print(f"\nGenerando catálogo de {n:,} vehículos (primera vez — puede tardar)…")
+        catalogo = generar_catalogo_n(n)
+        cat_path = f"catalog_{n}.json"
+        with open(cat_path, "w", encoding="utf-8") as f:
+            json.dump(catalogo, f, ensure_ascii=False, indent=2)
+        print(f"  Guardado en {cat_path}")
+        routes_path = f"routes_{n}.json"
+
+    # ── rutas ─────────────────────────────────────────────────────────────────
+    rutas = cargar_o_generar_rutas(routes_path, catalogo, api_key)
+    return catalogo, rutas
+
 
 def _distancia_m(ruta: list[dict], idx: int) -> float:
     from generator.physics import haversine_km
@@ -25,6 +113,7 @@ def _distancia_m(ruta: list[dict], idx: int) -> float:
         return 0.0
     a, b = ruta[idx], ruta[idx + 1]
     return haversine_km(a["lat"], a["lng"], b["lat"], b["lng"]) * 1000
+
 
 def _imprimir_metricas(vehiculos: list[Vehicle], contadores: dict):
     activos  = sum(1 for v in vehiculos if v.on_off == 1 and not v.offline)
@@ -41,50 +130,27 @@ def _imprimir_metricas(vehiculos: list[Vehicle], contadores: dict):
     print(f"──────────────────────────────────────────────\n")
     contadores.update({"gps": 0, "estado": 0, "errores": 0})
 
-def main():
-    # Reparto entre operadores: python app.py [1|2|3] — sin argumento corre toda la flota
-    parte = 0
-    if len(sys.argv) > 1:
-        try:
-            parte = int(sys.argv[1])
-        except ValueError:
-            parte = -1
-        if not 1 <= parte <= N_OPERADORES:
-            raise SystemExit(f"Uso: python app.py [1-{N_OPERADORES}]")
 
+def main():
     required = ["KAFKA_BOOTSTRAP_SERVER", "KAFKA_API_KEY", "KAFKA_API_SECRET",
                 "SCHEMA_REGISTRY_URL", "SCHEMA_REGISTRY_API_KEY", "SCHEMA_REGISTRY_API_SECRET"]
     faltantes = [v for v in required if not os.getenv(v)]
     if faltantes:
         raise EnvironmentError(f"Faltan variables en .env: {', '.join(faltantes)}")
 
-    # Cargar o generar catálogo
-    try:
-        catalogo = cargar_catalogo(CATALOG_PATH)
-        print(f"Catálogo cargado desde {CATALOG_PATH}")
-    except FileNotFoundError:
-        print("Generando catálogo sintético...")
-        catalogo = generar_catalogo()
-        with open(CATALOG_PATH, "w", encoding="utf-8") as f:
-            json.dump(catalogo, f, ensure_ascii=False, indent=2)
+    n_flota = _menu_flota()
+    parte   = _menu_operador()
 
-    # Cargar o generar rutas
-    api_key    = os.getenv("GOOGLE_MAPS_API_KEY")
-    route_mode = os.getenv("ROUTE_MODE", "pregenerated")
-    if route_mode == "pregenerated":
-        rutas = cargar_o_generar_rutas(ROUTES_PATH, catalogo, api_key)
-    else:
-        print("ROUTE_MODE=realtime — rutas se generarán en tiempo real (no implementado en demo)")
-        rutas = cargar_o_generar_rutas(ROUTES_PATH, catalogo, api_key)
+    api_key = os.getenv("GOOGLE_MAPS_API_KEY")
+    catalogo, rutas = _cargar_o_crear_catalogo(n_flota, api_key)
 
-    # Crear producers Kafka
+    # ── producers Kafka ───────────────────────────────────────────────────────
     sr_client       = crear_schema_registry_client()
     producer_gps    = crear_producer_gps(sr_client)
     producer_status = crear_producer_status(sr_client)
     producer_dlq    = crear_producer_dlq()
 
-    # Inicializar vehículos
-    suc_map = {s["id_sucursal"]: s for s in catalogo["sucursales"]}
+    # ── inicializar vehículos ─────────────────────────────────────────────────
     vehiculos: list[Vehicle] = []
     for v in catalogo["vehiculos"]:
         ruta = rutas.get(v["id_vehiculo"], [])
@@ -92,14 +158,16 @@ def main():
             continue
         vehiculos.append(Vehicle(v["id_vehiculo"], ruta, v["id_sucursal"]))
 
-    # Módulo N para que cada operador cubra todas las sucursales
     if parte:
         vehiculos = [v for i, v in enumerate(vehiculos) if i % N_OPERADORES == parte - 1]
-        print(f"Operador {parte}/{N_OPERADORES}")
+        print(f"\nOperador {parte}/{N_OPERADORES} — {len(vehiculos):,} vehículos asignados")
+    else:
+        print(f"\nModo completo — {len(vehiculos):,} vehículos")
 
-    print(f"Iniciando simulación: {len(vehiculos)} vehículos\n")
-    contadores = {"gps": 0, "estado": 0, "errores": 0, "dlq": 0}
-    segundos = 0
+    print("(Ctrl+C para detener)\n")
+
+    contadores  = {"gps": 0, "estado": 0, "errores": 0, "dlq": 0}
+    segundos    = 0
     metricas_ts = 0
 
     try:
@@ -107,7 +175,7 @@ def main():
             for v in vehiculos:
                 v.tick(1.0)
 
-                # Lógica offline
+                # lógica offline
                 if not v.offline:
                     dist = _distancia_m(v.ruta, v.ruta_idx) if v.ruta_idx < len(v.ruta) - 1 else 0
                     if dist > OFFLINE_UMBRAL_M and (hash(v.id_vehiculo + str(segundos)) % 50 == 0):
@@ -129,7 +197,7 @@ def main():
                     producer_status.poll(0)
                     continue
 
-                # Publicar GPS cada 30s
+                # publicar GPS cada 30s
                 if segundos % 30 == 0:
                     dato = v.generar_gps()
                     if v.offline:
@@ -139,7 +207,7 @@ def main():
                         producer_gps.produce(topic=TOPIC_GPS, key=v.id_vehiculo, value=dato, on_delivery=dr)
                         contadores["gps"] += 1
 
-                # Publicar Estado cada 60s
+                # publicar Estado cada 60s
                 if segundos % 60 == 0:
                     dato = v.generar_estado()
                     if v.offline:
@@ -152,7 +220,6 @@ def main():
             producer_gps.poll(0)
             producer_status.poll(0)
 
-            # Métricas cada 60s
             if segundos - metricas_ts >= 60:
                 _imprimir_metricas(vehiculos, contadores)
                 metricas_ts = segundos
@@ -165,6 +232,7 @@ def main():
         producer_gps.flush()
         producer_status.flush()
         producer_dlq.flush()
+
 
 if __name__ == "__main__":
     main()
