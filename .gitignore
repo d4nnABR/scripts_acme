@@ -3,3 +3,12 @@ __pycache__/
 *.pyc
 .pytest_cache/
 *.log
+
+# Datos pesados generados (se regeneran con los scripts; routes_10000.json
+# supera el límite de 100MB de GitHub). El catálogo base catalog.json sí se versiona.
+catalog_10000.json
+catalog_*.json
+routes_10000.json
+routes_*.json
+!routes.json
+!catalog.json
