@@ -99,7 +99,8 @@ class Vehicle:
         self.km_acumulados_sesion = 0.0
 
     def _actualizar_falla(self):
-        if random.random() < 0.001:
+        # Tasa de aparición de fallas baja: ~1 falla cada 10000s por vehículo
+        if random.random() < 0.0001:
             self.codigo_falla = random.choice(CODIGOS_FALLA)
         elif random.random() < 0.01 and self.codigo_falla > 0:
             self.codigo_falla = 0

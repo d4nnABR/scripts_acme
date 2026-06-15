@@ -11,6 +11,27 @@ def _punto_aleatorio_en_bbox(bbox: dict) -> tuple[float, float]:
     lon = random.uniform(bbox["lon_min"], bbox["lon_max"])
     return round(lat, 6), round(lon, 6)
 
+# Salto máximo aceptable entre dos waypoints consecutivos de una ruta REAL.
+# Una ruta urbana de Google trae puntos cada ~10-100 m. Un salto grande
+# (>700 m) significa que el tramo cruzó agua / zona sin carretera: ahí es
+# donde aparecen los "carros en el mar". Esas rutas se descartan.
+_SALTO_MAR_M = 700
+
+def _haversine_m(a: dict, b: dict) -> float:
+    R = 6_371_000
+    p1, p2 = math.radians(a["lat"]), math.radians(b["lat"])
+    dp = math.radians(b["lat"] - a["lat"])
+    dl = math.radians(b["lng"] - a["lng"])
+    h = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * R * math.asin(math.sqrt(h))
+
+def _ruta_sobre_calles(puntos: list[dict]) -> bool:
+    """True si la ruta parece seguir calles (sin saltos largos sobre agua)."""
+    if len(puntos) < 2:
+        return False
+    return all(_haversine_m(puntos[i], puntos[i + 1]) <= _SALTO_MAR_M
+               for i in range(len(puntos) - 1))
+
 def _decode_polyline(encoded: str) -> list[dict]:
     coords, idx, lat, lng = [], 0, 0, 0
     while idx < len(encoded):
@@ -39,6 +60,29 @@ def _parsear_ruta(respuesta: dict) -> list[dict]:
         puntos.extend(_decode_polyline(step["polyline"]["encodedPolyline"]))
     return puntos
 
+# ── OSRM (OpenStreetMap): rutas reales gratis, sin API key ni cuota ──────────
+# Mismo formato de salida que _llamar_maps (lista de {lat,lng}), así el resto
+# del pipeline y el dashboard no cambian. La geometría viene como un único
+# polyline (precision 5), no por steps como Google.
+OSRM_URL = "http://router.project-osrm.org/route/v1/driving"
+
+def _llamar_osrm(origen: tuple, destino: tuple, _api_key=None) -> list[dict]:
+    # OSRM espera lon,lat (al revés que Google)
+    coords = f"{origen[1]},{origen[0]};{destino[1]},{destino[0]}"
+    url = f"{OSRM_URL}/{coords}"
+    params = {"overview": "full", "geometries": "polyline", "steps": "false"}
+    r = requests.get(url, params=params, timeout=15)
+    r.raise_for_status()
+    j = r.json()
+    if j.get("code") != "Ok" or not j.get("routes"):
+        raise ValueError(f"OSRM no devolvió ruta: {j.get('code')}")
+    return _decode_polyline(j["routes"][0]["geometry"])
+
+# Errores que NO tiene sentido reintentar: la petición está mal o la key
+# no tiene permiso/quedó sin cuota de facturación. Reintentar solo gasta tiempo.
+_HTTP_NO_REINTENTAR = {400, 401, 403, 404}
+_MAX_BACKOFF_S = 16   # tope de espera por reintento (evita colgarse minutos)
+
 def _llamar_maps(origen: tuple, destino: tuple, api_key: str) -> list[dict]:
     payload = {
         "origin":      {"location": {"latLng": {"latitude": origen[0],  "longitude": origen[1]}}},
@@ -52,13 +96,30 @@ def _llamar_maps(origen: tuple, destino: tuple, api_key: str) -> list[dict]:
         "X-Goog-FieldMask": "routes.legs.steps.polyline",
     }
     for intento in range(5):
-        r = requests.post(MAPS_ROUTES_URL, json=payload, headers=headers, timeout=10)
-        if r.status_code == 429:
-            time.sleep(5 * 2 ** intento)
+        try:
+            r = requests.post(MAPS_ROUTES_URL, json=payload, headers=headers, timeout=10)
+        except requests.exceptions.RequestException as e:
+            # Error de red (timeout, conexión caída): reintentar con backoff acotado
+            if intento == 4:
+                raise RuntimeError(f"red: {e}") from e
+            time.sleep(min(_MAX_BACKOFF_S, 2 ** intento))
             continue
+
+        # Rate limit / cuota por minuto: backoff exponencial ACOTADO (no 155s)
+        if r.status_code == 429:
+            if intento == 4:
+                raise RuntimeError("429: rate limit persistente tras 5 intentos")
+            time.sleep(min(_MAX_BACKOFF_S, 2 ** intento))
+            continue
+
+        # Errores definitivos: no reintentar, fallar con el motivo de Google
+        if r.status_code in _HTTP_NO_REINTENTAR:
+            raise RuntimeError(f"HTTP {r.status_code}: {r.text[:200]}")
+
         r.raise_for_status()
         return _parsear_ruta(r.json())
-    r.raise_for_status()
+
+    raise RuntimeError("agotados los 5 intentos sin respuesta válida")
 
 def generar_rutas(catalogo: dict, api_key: str) -> dict:
     """Rutas reales con Google Maps. Solo para el catálogo base de 300 vehículos."""

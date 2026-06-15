@@ -19,7 +19,9 @@ import random
 
 from dotenv import load_dotenv
 
-from generator.routes import _llamar_maps, _punto_aleatorio_en_bbox, _ruta_sintetica
+from generator.routes import (
+    _llamar_maps, _punto_aleatorio_en_bbox, _ruta_sintetica, _ruta_sobre_calles,
+)
 from generator.catalog import cargar_catalogo
 
 load_dotenv()
@@ -32,11 +34,18 @@ SALIDA   = "routes_10000.json"
 # llamadas, la segunda el resto. Si solo hay una, se usa esa para todo.
 API_KEY_A    = os.getenv("GOOGLE_MAPS_API_KEY")
 API_KEY_B    = os.getenv("GOOGLE_MAPS_API_KEY_2") or API_KEY_A
-LIMITE_KEY_A = 1000   # primeras 1000 llamadas con key A, luego key B
+# Repartir la mitad de las llamadas a cada key (si hay segunda key), para no
+# agotar la cuota gratis de una sola. Con 8000 rutas → ~4000 por key.
+LIMITE_KEY_A = 4000
 
 # Total de rutas reales a generar (se reparten entre las 10 sucursales).
-# 3000 rutas / 10 sucursales = 300 rutas reales por ciudad.
-TOTAL_POOL = 3000
+# 8000 rutas / 10 sucursales = 800 rutas reales por ciudad.
+TOTAL_POOL = 8000
+
+# Si la ruta de Google cruza agua (salto largo entre waypoints), se reintenta
+# con otro par de puntos hasta MAX_REINTENTOS_MAR veces antes de aceptar/caer
+# a sintética. Evita los "carros en el mar" en ciudades costeras (Panamá).
+MAX_REINTENTOS_MAR = 4
 
 
 def _key_para(llamada_idx: int) -> str:
@@ -64,6 +73,8 @@ def main():
 
     rutas: dict[str, list] = {}
     llamada = 0
+    n_reales = 0      # rutas que quedaron sobre calles
+    n_sinteticas = 0  # fallbacks por error o por no encontrar ruta en tierra
 
     for s in sucursales:
         sid  = s["id_sucursal"]
@@ -74,17 +85,33 @@ def main():
 
         # 1) Pool de rutas reales para esta sucursal
         pool = []
+        suc_sint = 0
         for _ in range(min(pool_por_suc, len(veh))):
-            origen  = _punto_aleatorio_en_bbox(bbox)
-            destino = _punto_aleatorio_en_bbox(bbox)
-            key = _key_para(llamada)
-            try:
-                puntos = _llamar_maps(origen, destino, key)
-                pool.append(puntos)
-            except Exception as e:
-                print(f"  {sid} llamada {llamada}: ERROR {e} → ruta sintética")
-                pool.append(_ruta_sintetica(bbox))
-            llamada += 1
+            # Reintentar con otro par de puntos si la ruta cruza agua (mar).
+            puntos = None
+            for reintento in range(MAX_REINTENTOS_MAR):
+                origen  = _punto_aleatorio_en_bbox(bbox)
+                destino = _punto_aleatorio_en_bbox(bbox)
+                key = _key_para(llamada)
+                llamada += 1
+                try:
+                    cand = _llamar_maps(origen, destino, key)
+                except Exception as e:
+                    if reintento == MAX_REINTENTOS_MAR - 1:
+                        print(f"  {sid} llamada {llamada}: ERROR {e} → ruta sintética")
+                    time.sleep(0.6)
+                    continue
+                if _ruta_sobre_calles(cand):
+                    puntos = cand
+                    break
+                # cayó en agua: descartar y reintentar con otro punto
+                time.sleep(0.6)
+
+            if puntos is not None:
+                pool.append(puntos); n_reales += 1
+            else:
+                pool.append(_ruta_sintetica(bbox)); n_sinteticas += 1; suc_sint += 1
+
             if llamada % 100 == 0:
                 print(f"  …{llamada:,} llamadas (key {'A' if llamada < LIMITE_KEY_A else 'B'})")
             time.sleep(0.6)
@@ -92,11 +119,13 @@ def main():
         # 2) Reusar el pool en bucle entre los vehículos de la sucursal
         for i, id_v in enumerate(veh):
             rutas[id_v] = pool[i % len(pool)]
-        print(f"  {sid}: {len(pool)} rutas reales → reusadas en {len(veh):,} vehículos")
+        print(f"  {sid}: {len(pool)} rutas en pool ({suc_sint} sintéticas) "
+              f"→ reusadas en {len(veh):,} vehículos")
 
     with open(SALIDA, "w", encoding="utf-8") as f:
         json.dump(rutas, f)
-    print(f"\nListo: {len(rutas):,} vehículos con rutas reales en {SALIDA}")
+    print(f"\nListo: {len(rutas):,} vehículos con rutas en {SALIDA}")
+    print(f"Rutas reales (sobre calles): {n_reales:,}  |  Fallbacks sintéticos: {n_sinteticas:,}")
     print(f"Total llamadas a Google: {llamada:,}")
 
 

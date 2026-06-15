@@ -44,11 +44,33 @@ Al iniciar, el script pregunta dos cosas:
 > opción del menú toma los **primeros N** de ese mismo archivo — elegir 6,000
 > simula los primeros 6,000 vehículos. No se vuelve a llamar a ninguna API.
 >
-> Las rutas para 1k/6k/10k se generan sintéticas la primera vez (sin Google Maps)
-> y quedan cacheadas en `routes_<N>.json`.
+> Las rutas (`routes_10000.json`) son **rutas reales sobre calles** generadas con
+> OSRM (OpenStreetMap), ~500 rutas únicas por sucursal. Ver "Generar rutas" abajo.
 
 Detener con `Ctrl+C`. Mientras corre consume cuota de Confluent: apagarlo cuando
 no se esté usando.
+
+## Generar rutas (reales, sin API key)
+
+Las rutas que recorren los vehículos se generan con **OSRM** (router público de
+OpenStreetMap): rutas reales calle-por-calle, gratis, sin API key ni cuota. Un
+filtro anti-mar descarta rutas que cruzan agua (evita "carros en el mar" en
+ciudades costeras como Panamá).
+
+```bash
+# Regenerar las 10 sucursales a 500 rutas únicas c/u, rescatando las que ya
+# estaban bien y completando con OSRM:
+python regenerar_rutas_osrm.py --pool 500
+
+# Solo una sucursal:
+python regenerar_rutas_osrm.py SUC-009 --pool 500
+
+# Generar desde cero una sucursal (sin rescatar nada):
+python generar_rutas_sucursal.py SUC-008 --pool 500
+```
+
+`generar_rutas_reales.py` (Google Directions, requiere API key) queda como
+alternativa, pero OSRM es el camino recomendado: sin cuotas ni `429`.
 
 ## Tests
 
