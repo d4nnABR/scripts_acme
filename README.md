@@ -7,6 +7,7 @@ Dashboard en vivo: https://acme-ev-dashboard.vercel.app
 ## Setup (una sola vez)
 
 ```bash
+git pull                       # traer la última versión del código
 pip install -r requirements.txt
 ```
 
@@ -15,6 +16,19 @@ que se comparten por el grupo. **Nunca subir el `.env` al repo.**
 
 No se necesita Google Maps API key: `catalog.json` y `routes.json` ya vienen incluidos
 con 300 vehículos pre-generados.
+
+### ⚠️ Para correr 1k / 6k / 10k vehículos: copiar `routes_10000.json`
+
+Las rutas reales de la flota grande viven en **`routes_10000.json`** (~176MB). Este
+archivo **NO está en GitHub** (supera el límite de 100MB), así que `git pull` no lo
+trae. Hay que **copiarlo aparte** (Drive / USB / WeTransfer) en esta carpeta.
+
+Sin él, el generador **se detiene con un error** en lugar de inventar rutas
+sintéticas feas (carros que cruzan el mar). Si ves ese error, pídele el archivo
+a quien lo generó y cópialo aquí.
+
+> Solo la opción de 300 vehículos funciona sin ese archivo (usa `routes.json`
+> incluido en el repo).
 
 ## Correr el generador
 

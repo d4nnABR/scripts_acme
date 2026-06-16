@@ -85,9 +85,20 @@ def _cargar_o_crear_catalogo(n: int, api_key: str | None) -> tuple[dict, dict]:
             n = disponibles
         catalogo = _recortar(completo, n)
         print(f"Catálogo: primeros {n:,} de {CATALOGO_MAESTRO} ({disponibles:,} disponibles)")
-        # routes_10000.json (rutas reales del pool) cubre los IDs de cualquier N,
+        # routes_10000.json (rutas reales OSRM) cubre los IDs de cualquier N,
         # porque el recorte toma los primeros N vehículos del mismo maestro.
-        routes_path = ROUTES_MAESTRO if os.path.exists(ROUTES_MAESTRO) else f"routes_{n}.json"
+        # Si falta, NO generar sintéticas: detener con un mensaje claro. El archivo
+        # pesa ~176MB y no está en GitHub — hay que copiarlo aparte (Drive/USB).
+        if not os.path.exists(ROUTES_MAESTRO):
+            raise SystemExit(
+                f"\n  ❌ Falta '{ROUTES_MAESTRO}' (rutas reales OSRM).\n\n"
+                f"  Sin este archivo el simulador generaría rutas SINTÉTICAS\n"
+                f"  (carros que cruzan el mar y se ven mal). No se va a continuar.\n\n"
+                f"  → Pídele '{ROUTES_MAESTRO}' a tu compañero (no está en GitHub\n"
+                f"    porque pesa ~176MB) y cópialo en esta carpeta:\n"
+                f"    {os.getcwd()}\n"
+            )
+        routes_path = ROUTES_MAESTRO
     elif n == 300:
         # Respaldo: el repo trae catalog.json + routes.json con 300 reales
         catalogo = cargar_catalogo("catalog.json")
